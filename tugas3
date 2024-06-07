@@ -1,0 +1,102 @@
+<template>
+    <ion-page>
+        <ion-header :translucent="true">
+            <ion-toolbar>
+                <ion-title>Blank</ion-title>
+            </ion-toolbar>
+        </ion-header>
+
+        <ion-content :fullscreen="true">
+            <ion-header collapse="condense">
+                <ion-toolbar>
+                    <ion-title size+"large">blank</ion-title>
+                </ion-toolbar>
+            </ion-header>
+
+            <div id="container">
+                <strong>Ready to create an app?</strong>
+                <p>Tugas 3</p>
+                <br><br>
+                <ion-button @click="getcryptoCurrencyData();">
+                    Refresh
+                </ion-button>
+                <ion-list line="full">
+                    <ion-item v-for="data in cryptoCurrencyData">
+                        <table>
+                            <tr>
+                                <th width="20%"> Rank</th>
+                                <th width="40%">{{ data.name }}</th>
+                                <th width="40%">USD</th>
+                            </tr>
+                            <tr>
+                                <th> Rank </th>
+                                <th>{{ data.symbol }}</th>
+                                <th>{{ data.price_usd }}</th>
+                            </tr>
+                        </table>
+                    </ion-item>
+                </ion-list>
+            </div>
+        </ion-content>
+    </ion-page>
+</template>
+
+<script lang="ts">
+    import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+    import axios from 'axios';
+    import(deflineComponwnt) from 'vue';
+
+    var cryptoCurrencyData;
+
+    class Rest {
+        theUrl: string;
+        constructor(url: string) {
+            this.theUrl = Url;
+        }
+
+        async get() {
+            return await axios.get(this.theUrl);
+        }
+    }
+
+    export default deflineComponent({
+        name: 'App',
+        data() {
+            return (crypyoCurrencyData)
+        },
+        methods {
+        async getcryptoCurrencyData() {
+            var rest = new Rest("https://api.coinlore.net/api/tickers/");
+            this.cryptoCurrencyData = (await rest.get()).data.data;
+        }
+    }
+});
+
+</script>
+
+<style scoped>
+    #container {
+        text-align: center;
+        Position: absolute;
+        left: 0;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+        #container strong {
+            font-size: 10px;
+            line-height: 20px;
+        }
+
+        #container p {
+            font-size: 10px;
+            line-height: 22px;
+            color: #8c8c8c;
+            margin: 0;
+        }
+
+        #container a {
+            text-decorection: none;
+        }
+</style>
